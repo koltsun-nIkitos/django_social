@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="header">
+        <a href="{% url 'dashboard' %}">
+            <span class="logo">Bookmarks</span>
+        </a>
+        
+        {% if request.user.is_authenticated %}
+            <ul class="menu">
+                <li {% if section == 'dashboard' %} class="selected">{% endif %}
+                    <a href="{% url 'dashboard' %}">Мой рабочий стол</a>
+                </li>
+                <li {% if section == 'images' %} class="selected">{% endif %}
+                    <a href="#">Картинки</a>
+                </li>
+                <li {% if section == 'people' %} class="selected">{% endif %}
+                    <a href="#">Люди</a>
+                </li>
+            </ul>
+        {% endif %}
+
+        <span class="user">
+            {% if request.user.is_authenticated %}
+                <p>
+                    Привет, {{ request.user.first_name }}
+                    <a href="{% url 'logout' %}">Выйти</a>
+                </p>
+            {% else %}
+                <a href="{% url 'login' %}">Войти</a>
+            {% endif %}
+        </span>
+    </div>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="#" class="close">x</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div id="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

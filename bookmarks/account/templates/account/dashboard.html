@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Рабочий стол{% endblock %}
+
+{% block content %}
+    <h1>Рабочий стол</h1>
+
+    {% with total_images_creted=request.user.images_created.count %}
+        <p>Добро пожаловать на рабочий стол.</p>
+        {{ total_images_creted }} картинок у вас.
+    {% endwith %}
+
+    <p>
+        Перетащите кнопку в панель закладок для использования плагина на других сайтах:
+        <a href="javascript:{% include 'bookmarklet_launcher.js' %}" class="button">
+            Bookmark-ни!
+        </a>
+    </p>
+
+    <p>
+        Вы можете <a href="{% url 'edit' %}">отредактировать профиль</a> 
+        или <a href="{% url 'password_change' %}">изменить пароль</a>
+    </p>
+
+        
+{% endblock %}
+

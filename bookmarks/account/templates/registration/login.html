@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+    <h1>Войти</h1>
+
+    {% if form.errors %}
+        <p>Ваш пароль или логин неправильные. Попробуйте снова</p>
+    {% else %}
+        <p>Пожалуйста, заполните форму ниже</p>
+    {% endif %}
+
+    <div class="login-form">
+        <form action="{% url 'login' %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <p>
+                <input type="submit" value="Войти">
+            </p>
+        </form>
+        <p>
+            <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+        </p>
+        <p>
+            Если у вас нет аккаунта, то вы можете
+            <a href="{% url 'register' %}">зарегистрироваться</a>
+        </p>
+    </div>
+
+
+    <div class="social">
+        <li class="google">
+            <a href="{% url 'social:begin' 'google-oauth2' %}">
+                Войти с помощью Google
+            </a>
+        </li>
+    </div>
+{% endblock %}
