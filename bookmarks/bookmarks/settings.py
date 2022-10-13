@@ -30,7 +30,6 @@ ALLOWED_HOSTS = [
     'mysite.com',
     'localhost',
     '127.0.0.1',
-    '075e-188-242-77-107.eu.ngrok.io'
 ]
 
 LOGIN_REDIRECT_URL = "dashboard"
@@ -41,8 +40,8 @@ LOGOUT_URL = "logout"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #Google авторизация
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '398026534437-qkmhnii655r6ktadjnb7fviai39jrc3g.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'ВСТАВИТЬ КЛЮЧИ'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 
 #Вк авторизация
 SOCIAL_AUTH_VK_OAUTH2_KEY = ''
